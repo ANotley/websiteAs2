@@ -1,0 +1,227 @@
+/* Mobile First Approach */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open-Sans', sans-serif;
+}
+
+/* Declare colour variables in CSS */
+:root {
+    --main-color: #006064;
+    --header-color: #006064;
+    --nav-color: #4DD0E1;
+    --customer-details-color: #E0F7FA;
+    --repair-details-color: #B2EBF2;
+    --courtesy-phone-color: #80DEEA;
+    --cost-section-color: #4DD0E1;
+    --buttons-section-color:  #00ACC1;
+    --footer-color: #0097A7;
+}
+
+header {
+    background-color: var(--header-color);
+    min-height: 15vh;
+    display: block;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+header .title-area {
+    padding: 1.5em 0.5em;
+}
+
+header nav ul li {
+    display: block;
+    background-color: var(--nav-color);
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    padding: 0.5em;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: normal;
+}
+
+/* Styles for Main Section */
+main {
+    background-color: var(--main-color);
+}
+
+section {
+    padding: 1em 2em;
+    overflow: hidden;
+}
+
+.form-layout {
+    /* CSS GRID */
+    grid-template-columns: 1fr;
+    grid-template-rows: auto(5, auto);
+}
+
+h2 {
+    margin-bottom: 1em;
+}
+
+/* Form Alignment */
+label {
+    display: block;
+}
+
+#title-label {
+    margin-top: 1em;
+}
+
+textarea, input, select{
+    margin-bottom: 1em;
+    width: 90%;
+
+}
+
+/* fieldset option label/button alignment */
+fieldset label {
+    float: left;
+}
+
+fieldset input {
+    float: right;
+    width: 73%; 
+}
+
+form {
+    overflow: hidden;
+    /* margin-bottom: 0.5em; */
+}
+
+.error-message {
+    color: red;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* --------------Specific Section code: ---------------------- */
+#customer-details {
+    background-color: var(--customer-details-color);
+    min-height: 30vh;
+}
+
+#repair-details {
+    background-color: var(--repair-details-color);
+    min-height: 30vh;
+}
+
+#courtesy-phone {
+    background-color: var(--courtesy-phone-color);
+    min-height: 15vh;
+}
+
+#add-btn, #remove-btn {
+    display: inline;
+}
+
+table, th, td {
+    border: 1px solid black;
+    background-color: lightgray;
+}
+
+#cost {
+    background-color: var(--cost-section-color);
+    min-height: 20vh;
+}
+
+#buttons-section {
+    background-color: var(--buttons-section-color);
+    min-height: 5vh;
+}
+
+/* Styles for footer */
+footer {
+    background-color: var(--footer-color);
+    min-height: 3em;
+    color: white;
+
+    /* Center align text horizontally and vertically */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ---------------------------------------- RESPONSIVENESS ------------------------------------ */
+/*********** TABLETS/IPAD ***********/
+@media screen and (min-width:600px){
+    header nav ul{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        grid-gap: 0.25em;
+        /* margin: 0 0.25em; */
+    }
+
+}
+
+
+/*********** DESKTOP ***********/
+@media screen and (min-width:769px){
+    /* Modify Header */
+    header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 'title-space title-space menu-space';
+    }
+    
+    .title-area {
+        grid-area: title-space;
+    }
+
+    .menu-area {
+        grid-area: menu-space;
+    }
+
+    /* Modify main form-layout */
+    .form-layout {
+        display: grid;
+        grid-gap: 0px;
+        grid-template-areas: 'box1 box2 box3'
+                             'box1 box2 box4'
+                             'box5 box5 box5';
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    /* Form Alignment */
+    label {
+        float: left;
+    }
+
+    input, select, textarea {
+        float: right;
+        width: 50%; 
+        /* margin-top: 0.5em; */
+        /* margin-bottom: 1em; */
+
+    }
+
+    #customer-details {
+        grid-area: box1;
+    }
+
+    #repair-details {
+        grid-area: box2;
+    }
+
+    #courtesy-phone {
+        grid-area: box3;
+    }
+
+    #cost {
+        grid-area: box4;
+    }
+
+    #buttons-section {
+        grid-area: box5;
+    }
+}

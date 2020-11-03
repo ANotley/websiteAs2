@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!--Make website responsive-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <!--Link to external style sheet-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <!--Link to external JS page -->
+        <script src="script/script.js"></script>
+
+        <title> Assignment 2 | Alicia</title>
+    </head>
+
+    <body onload="createTable()">
+        <header>
+            <h1 class="title-area">Phone Fix Booking System</h1>   
+            <nav class="menu-area">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">EXTENSION</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <form name="repairForm" id="repairBookingForm" method="GET" action="process.php">
+                <div class="form-layout">
+                    <section id="customer-details">
+                        <h2>Customer Details</h2>
+                        <form id="form" method="GET" action="process.php">
+                            <fieldset>
+                                <legend>Customer Type *</legend>
+                                <label>Consumer: </label>
+                                <input type="radio" id="consumer-btn" name="customer type" value="consumer">
+                                <br>
+                                <label>Business: </label>
+                                <input type="radio" id="business-btn" name="customer type" value="business">
+                            </fieldset>                            
+
+                            <label id="title-label">Title: *</label>
+                            <select id="title">
+                                <option value="mr">Mr</option>
+                                <option value="mrs">Mrs</option>
+                                <option value="ms">Ms</option>
+                                <option value="miss">Miss</option>
+                                <option value="dr">Dr</option>
+                            </select>
+                            <br>
+                            <label>First Name: * </label>
+                            <input type="text" id="firstname">
+                            <br>
+                            <label>Last Name: * </label>
+                            <input type="text" id="lastname">
+                            <br>
+                            <label>Street: * </label>
+                            <input type="text" id="street">
+                            <br>
+                            <label>Suburb: </label>
+                            <input type="text" id="suburb">
+                            <br>
+                            <label>City: * </label>
+                            <input type="city" id="city">
+                            <br>
+                            <label>Postcode: </label>
+                            <input type="text" id="postcode">
+                            <br>
+                            <label>Phone Number: * </label>
+                            <input type="text" id="phonenumber">
+                            <br>
+                            <label>Email: * </label>
+                            <input type="email" id="email">
+                        </form>
+                    </section>
+
+                    <section id="repair-details">
+                        <h2>Repair Details</h2>
+                        <form id="form" method="GET" action="process.php">
+                            <label>Purchase Date: *</label>
+                            <input type="date" id="purchase-date">
+                            <br>
+                            <label>Repair Date: *</label>
+                            <input type="date" id="repair-date">
+                            <br>
+                            <fieldset>
+                                <legend>Under Warranty </legend>
+                                <label>Consumer: </label>
+                                <input type="radio" id="warranty-btn" name="under warranty" value="warranty">
+                            </fieldset>
+                            <br>
+                            <label>IMEI Number: *</label>
+                            <input type="text" id="imei-number">
+                            <br>
+                            <label>Make: *</label>
+                            <select id="title">
+                                <option value="apple" selected>Apple</option>
+                                <option value="lg">LG</option>
+                                <option value="motorola">Motorola</option>
+                                <option value="nokia">Nokia</option>
+                                <option value="samsung">Samsung</option>
+                                <option value="sony">Sony</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <br>
+                            <label>Model Number: </label>
+                            <input type="text" id="model-number">
+                            <br>
+                            <label>Fault Catergory: *</label>
+                            <select id="title">
+                                <option value="battery" selected>Battery</option>
+                                <option value="charging">Charging</option>
+                                <option value="screen">Screen</option>
+                                <option value="sd-storage">SD-Storage</option>
+                                <option value="software">Software</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <br>
+                            <label>Description: *</label>   
+                            <textarea id="description"></textarea>
+                        </form>
+                    </section>
+
+                    <section id="courtesy-phone">
+                        <h2>Courtesy Phone</h2>
+                        <label>Item Type: </label>
+                        <select id="title">
+                            <option value="iphone" selected>iPhone</option>
+                            <option value="other-phones">Other Phones</option>
+                            <option value="chargers">Chargers</option>
+                        </select>
+                        <br>
+                        <button type="button" id="add-btn" onclick="addRow()">Add</button>
+                        <button type="button" id="remove-btn">Remove</button>
+                        <br>
+
+                        <div id="table-contanier"></div>    
+                        <!-- <table>
+                            <tr>
+                                <th><strong>Item</strong></th>
+                                <th><strong>Cost</strong></th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table> -->
+                    </section>
+
+                    <section id="cost">
+                        <h2>Cost</h2>
+                        <form>
+                            <label>Bond: </label>
+                            <input type="text" id="bond" readonly>
+                            <br>
+                            <label>Service Fee: </label>
+                            <input type="text" id="service-fee" readonly>
+                            <br>
+                            <label>Total: </label>
+                            <input type="text" id="total" readonly>
+                            <br>
+                            <label>GST: </label>
+                            <input type="text" id="gst" readonly>
+                            <br>
+                            <label>Total(+GST): </label>
+                            <input type="text" id="total+gst" readonly>
+                        </form>
+                    </section>
+
+                    <section id="buttons-section">
+                        <div id="buttons">
+                            <button type="button" id="reset-btn">Reset</button>
+                            <button type="submit" id="submit-btn">Submit</button>
+                            <input type="submit" value="SUBMIT">
+                            <button type="button" id="faq-btn">FAQ?</button>
+                        </div>
+                    </section>
+                </div>
+            </form>
+        </main>
+
+        <footer>
+                <p>Advanced Web Design, Copyright &#169; 2019</p>
+        </footer>
+    </body>
+</html>
