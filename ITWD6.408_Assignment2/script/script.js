@@ -1,175 +1,80 @@
-// Embed JQuery Library
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+$(document).ready(function() { 
 
-//Create Table for courtesy phone
-// var tableHead = new Array();
-// tableHead = ['Item', 'Cost']
+    //Add current choice to the COURTESY PHONE 
+    $("#add-btn").click(function() {
+        //Cost of Items
+        var iphonesCost = 275.00;
+        var otherPhonesCost = 100.00;
+        var chargersCost = 30.00;
 
-// function createTable() {
-//     var emptyTable = document.createElement('table');
-//     emptyTable.setAttribute('table-id', 'emptyTable');
-
-//     var tr = emptyTable.insertRow(-1);
-
-//     for (var h = 0; h < tableHead.length; h++) {
-//         var th = document.createElement('th'); // the header object.
-//         th.innerHTML = tableHead[h];
-//         tr.appendChild(th);
-//     }
-    
-//     var div = document.getElementById('table-container');
-//     div.appendChild(emptyTable);    // add table to a container.
-// }
-
-//Add rows to the COURTESY PHONE
+        //identify which option was selected
+        var selectedOption = $('#item option:selected');
+        var selectedOptionText = $('#item option:selected').text();
 
 
-//Javascript form validation
-$(document).ready(function() {
-    $('select').focus(function() {
-        //Hide all of the error messages.
-        $('p.error-message').hide();
-    });
+        //identify values in table.
+        var row1 = $('#first-item');
+        var row2 = $('#second-item');
+        var row1Text = $('#first-item').text();
+        var row2Text = $('#second-item').text();
 
-    //When user clicks submit btn, prevent sending data immediately, and to wait until after data validation
-    $('#form').submit(function(e) {
-        //Prevent sending form data out
-        e.preventDefault();
+        //Users can only add 1 phone and one charger to the table 
+        if(selectedOptionText === row1Text) {
+            $("#table-error").html('* That item is already in the table');
+        } else if (selectedOptionText === row2Text) {
+            $("#table-error").html('* That item is already in the table');
 
-        //Get data that was entered by users
-        //Customer Type Legend
-        let firstname = $('#firstname').val();
-        // let lastname = $('#lastname').val();
-        // let street = $('#street').val();
-        // let city = $('#city').val();
-        // let postcode = $('#postcode').val();
-        // let phonenumber = $('#phonenumber').val();
-        // let email = $('#email').val();
+            //if table already has a phone
+        } else if ((selectedOptionText === 'iPhone') && (row1Text === 'Other Phone')){
+            $("#table-error").html('* Only one mobile phone can be added to the table at once');
+        } else if ((selectedOptionText === 'iPhone') && (row2Text === 'Other Phone')) {
+            $("#table-error").html('* Only one mobile phone can be added to the table at once');
 
-        // let purchaseDate = $('#purchase-date').val();
-        // let repairDate = $('#repair-date').val();
-        // let warrantyBtn = $('#warranty-btn').val();
-        // let imeiNumber = $('#imei-number').val();
-        // let description = $('#description').val();
+        } else if ((selectedOptionText === 'Other Phone') && (row1Text === 'iPhone')) {
+            $("#table-error").html('* Only one mobile phone can be added to the table at once');
+        } else if ((selectedOptionText === 'Other Phone') && (row2Text === 'iPhone'))  {
+            $("#table-error").html('* Only one mobile phone can be added to the table at once');
+            
+            //if table already has a charger
+        } else if ((selectedOptionText === 'Charger') && (row1Text ==='Charger')) {
+            $("#table-error").html('* Only one charger can be added to the table at once');
 
-        //Customer Type Legend - not empty
+        } else if ((selectedOptionText === 'Charger') && (row2Text ==='Charger')) {
+            $("#table-error").html('* Only one charger can be added to the table at once');
 
-        //Check entered data
-        //Name mustn't be empty or null
-        //First Name - only allow letters, spaces and the '-' symbol
-        if(firstname == "" || firstname == null) {
-            //Append an error message below the input box.
-            $('#firstname').after('<p class="error-message">*Please enter your first name</p>'); 
-            return false;//Go back to form, don't do anything else.                       
-        }
+        }  else if(row1Text =='Item') {
+            if(selectedOption.is('#iphone')) {
+                $("#first-item").html('iPhone');
+                $("#first-cost").html('$' + iphonesCost);
+            } else if(selectedOption.is('#other-phone')) {
+                $("#first-item").html('Other Phone');
+                $("#first-cost").html('$' + otherPhonesCost);
+            } else if(selectedOption.is('#charger')) {
+                $("#first-item").html('Charger');
+                $("#first-cost").html('$' + chargersCost);
+            }
+        }  else {
+            //if first row occupied, add to second
+            if(selectedOption.is('#iphone')) {
+                $("#second-item").html('iPhone');
+                $("#second-cost").html('$' + iphonesCost);
+            } else if(selectedOption.is('#other-phone')) {
+                $("#second-item").html('Other Phone');
+                $("#second-cost").html('$' + otherPhonesCost);
+            } else if(selectedOption.is('#charger')) {
+                $("#second-item").html('Charger');
+                $("#second-cost").html('$' + chargersCost);
+            } else {
+                $("#second-cost").html('$');
+            }
+        }    
 
-        // //Surname -  only allow letters, spaces and the '-' symbol
-        // if(lastname == "" || lastname == null) {
-        //     //Append an error message below the input box.
-        //     $('#lastname').after('<p class="error-message">*Please enter your last name</p>'); 
-        //     return false;//Go back to form, don't do anything else.                       
-        // }
-
-        // if(street == "" || street == null) {
-        //     //Append an error message below the input box.
-        //     $('#street').after('<p class="error-message">*Please enter your street</p>'); 
-        //     return false;//Go back to form, don't do anything else.                       
-        // }
-
-        // if(city == "" || city == null) {
-        //     //Append an error message below the input box.
-        //     $('#city').after('<p class="error-message">*Please enter your city</p>'); 
-        //     return false;//Go back to form, don't do anything else.                       
-        // }
         
-        // //Postcode: must be four digits
-        // // var regex = new RegExp('/^\d{4}$/')
-        // // if(postcode.match(regex) == false || !(postcode == "") || !(postcode == null)) {            
-        // //     //Append an error message below the input box.
-        // //     $('#city').after('<p class="error-message">*Your postcode must be 4 numbers long</p>'); 
-        // //     return false;//Go back to form, don't do anything else.                       
-        // // }
 
-        // //Phone Number - only allows for numbers, spaces and ( ), -, + symbols.
-        // if(phonenumber == "" || phonenumber == null) {
-        //     //Append an error message below the input box.
-        //     $('#phonenumber').after('<p class="error-message">*Please enter your phonenumber</p>'); 
-        //     return false;//Go back to form, don't do anything else.                       
-        // }
         
-        // //Email - must check for @ and full stop (.) after the @. It should also have a minimum length of 5 characters.
-        // if(email == "" || email == null) {
-        //     //Append an error message below the input box.
-        //     $('#email').after('<p class="error-message">*Please enter your email address</p>'); 
-        //     return false;//Go back to form, don't do anything else.      
-        // }
-
-        // if(purchaseDate == "" || purchaseDate == null) {
-        //     //Append an error message below the input box.
-        //     $('#purchase-date').after('<p class="error-message">*Please enter your the purchase date</p>'); 
-        //     return false;//Go back to form, don't do anything else.                       
-        // }
 
 
-        // //The repair date must be later than the purchase date.
-        // if(repairDate == "undefined" || repairDate == null) {
-        //     $('#repair-date').after('<p class="error-message">*Please enter the last repair date of the device</p>'); 
-        //     return false;//Go back to form, don't do anything else.      
-        // }
+        //If Customer Type != business, then total is calculated as the 'bond' (business doesn't get charged bond)
 
-        // //Warranty should be disabled if purchase date is greater than 24 months.
-
-        // //IMEI Number - must only be numbers with a length of 15.
-        // if(imeiNumber == "" || imeiNumber == null) {
-        //     //Append an error message below the input box.
-        //     $('#imei-Number').after('<p class="error-message">*Please enter your date option</p>'); 
-        //     return false;//Go back to form, don't do anything else.      
-        // }
-
-        // if(description == "" || description == null) {
-        //     //alert("ERROR");
-        //     $('#description').after('<p class="error-message">*Please enter your date option</p>'); 
-        //     return false;//Go back to form, don't do anything else.      
-        // }
-        //IF WE REACH THIS POINT, IT MEANS ALL DATA IS CORRECT.
-        //Task One: SAVE DATA TO DATABASE - Indexed
-        //info in the lab sheet under lab 11 - refer to lab tutorial
-
-        //TASK TWO: CREATE INVOICE IN ANOTHER WEB PAGE
-        //Call to ececute displayInvoice() method
-        //displayInvoice(name, email, gender, date);
     });
 });
-
-//-----------------------
-//DisplayInvoice method - simple js function. Must be outside of all the jquery methods
-// function displayInvoice(firstname, lastname ) {
-//     //Create new blank webpage to display invoice
-//     let invoiceWindow = window.open('', '_blank');
- 
-//     //Get the passed data
-//     let firstname = firstname;
-//     let lastname = lastname;
-//     // let userGender = gender;
-//     // let enteredDate = date;
-
-//     //Write the invoice in 'html' format
-//     invoiceWindow.document.write(`
-//         <html>
-//             <head>
-//                 <title>Booking Invoice</title>
-//             </head>
-//             <body>
-//                 <h1>Booking Invoice</h1>
-//                 <p>Name: ${firstname} </p>
-//                 <p>Email: ${lastname} </p>
-//             </body>
-//         </html>
-//     `);
-// }
-
-
-
-
-
-

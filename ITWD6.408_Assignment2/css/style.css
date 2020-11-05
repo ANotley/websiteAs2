@@ -9,14 +9,14 @@
 /* Declare colour variables in CSS */
 :root {
     --main-color: #006064;
-    --header-color: #006064;
-    --nav-color: #4DD0E1;
-    --customer-details-color: #E0F7FA;
-    --repair-details-color: #B2EBF2;
-    --courtesy-phone-color: #80DEEA;
-    --cost-section-color: #4DD0E1;
-    --buttons-section-color:  #00ACC1;
-    --footer-color: #0097A7;
+    --header-color: #2d3e4f;
+    --nav-color: #03969b;
+    --customer-details-color: #f7e0cd;
+    --repair-details-color: #E0F7FA;
+    --courtesy-phone-color: #03969b;
+    --cost-section-color: #fc9b7e;
+    --buttons-section-color:  #fc9b7e;
+    --footer-color: #2d3e4f;
 }
 
 header {
@@ -51,60 +51,47 @@ main {
     background-color: var(--main-color);
 }
 
-section {
-    padding: 1em 2em;
-    overflow: hidden;
-}
-
 .form-layout {
     /* CSS GRID */
     grid-template-columns: 1fr;
     grid-template-rows: auto(5, auto);
 }
 
-h2 {
-    margin-bottom: 1em;
-}
-
-/* Form Alignment */
-label {
-    display: block;
-}
-
-#title-label {
-    margin-top: 1em;
-}
-
-textarea, input, select{
-    margin-bottom: 1em;
-    width: 90%;
-
-}
-
-/* fieldset option label/button alignment */
-fieldset label {
-    float: left;
-}
-
-fieldset input {
-    float: right;
-    width: 73%; 
-    margin-bottom: 0.5em;
-
-}
-
-form {
-    overflow: hidden;
-    /* margin-bottom: 0.5em; */
+section {
+    padding: 1em;
 }
 
 .error-message {
     color: red;
-    margin: 0;
+    margin: 1em 5%;
     padding: 0;
 }
 
+/* Form Alignment */
+label, h2 {
+    display: block;
+    margin: 0 5% 0 5%;
 
+}
+
+textarea, select, input:not(.radio-btn){
+    margin: 0 5% 1em 5%;
+    width: 90%;
+}
+/* Fieldset related styles */
+fieldset {
+    margin: 0 5% 0 5%;
+    padding: 4%;
+
+}
+
+fieldset label {
+    float: left;
+}   
+
+legend {
+    margin-left: 0.5%;
+}
 /* --------------Specific Section code: ---------------------- */
 #customer-details {
     background-color: var(--customer-details-color);
@@ -116,19 +103,54 @@ form {
     min-height: 30vh;
 }
 
+#description {
+    min-height: 10em;
+}
+
 #courtesy-phone {
     background-color: var(--courtesy-phone-color);
     min-height: 15vh;
 }
 
-#add-btn, #remove-btn {
-    display: inline;
+/* Table Styles */
+table {
+    empty-cells: show;
+    width: 90%;
+    margin: 0 5%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse; 
+}
+
+tr {
+    height: 2em;
+}
+
+td {
+    padding-left: 1em;
+}
+
+.table-row {
+    background-color: rgb(243, 237, 237);
+}
+
+.table-btns {
+    display: block;
+}
+
+.table-btn {
+    display: block;
 }
 
 table, th, td {
     border: 1px solid black;
     background-color: lightgray;
 }
+
+
+
 
 #cost {
     background-color: var(--cost-section-color);
@@ -138,6 +160,15 @@ table, th, td {
 #buttons-section {
     background-color: var(--buttons-section-color);
     min-height: 5vh;
+    display: block;
+    float: middle;
+}
+
+.form-btn {
+    display: block;
+    width: 90%;
+    margin:  0 5% 0.5em 5%;
+    padding: 0.3em;
 }
 
 /* Styles for footer */
@@ -160,9 +191,46 @@ footer {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
         grid-gap: 0.25em;
-        /* margin: 0 0.25em; */
     }
 
+    textarea, select, input:not(.radio-btn){
+        margin: 0 15% 1em 15%;
+        width: 70%;
+    }  
+
+    label:not(.radio-label) {
+        margin: 0 15% 0 15%;
+    }
+
+    fieldset {
+        margin: 0 15% 0 15%;
+        padding: 1em 0 1em 0;
+    }
+
+    fieldset label {
+        margin-left: 0.5em;
+    }
+        
+    .form-btn {/*Styles the individual form buttons*/
+        width: 70%;
+        margin:  0 15% 0.5em 15%;
+    }
+
+    #description {
+        min-height: 10em;
+        width: 70%;
+        margin: 0 15% 0 15%;
+    }
+
+    /* Table Styles */
+    table {
+        width: 70%;
+        margin: 0 15%;
+    }
+
+    .error-message {
+        margin: 1em 15%;
+    }
 }
 
 
@@ -194,17 +262,29 @@ footer {
         grid-template-rows: 1fr 1fr 1fr;
     }
 
-    /* Form Alignment */
-    label {
-        float: left;
+        /* Form Alignment */
+    h2 {
+        margin-left: 1.5em;
     }
 
-    input, select, textarea {
-        float: right;
-        width: 50%; 
-        /* margin-top: 0.5em; */
-        /* margin-bottom: 1em; */
+    /* Fieldset related styles */
+    legend {
+        margin-left: 5%;
+    }
 
+    /* Form Alignment */
+    label:not(.radio-label) {
+        /* float: left; */
+        text-align: right;
+        clear: both;
+        float:left;
+        margin-right:15px;
+    
+    }
+
+    select, textarea, input:not(.radio-btn) {
+        float: right;
+        width: 48%;
     }
 
     #customer-details {
@@ -215,8 +295,33 @@ footer {
         grid-area: box2;
     }
 
+    #description {
+        float: right;
+        min-height: 10em;
+        width: 48%;
+    }
+
     #courtesy-phone {
         grid-area: box3;
+    }
+
+    /* Table Styles */
+    table {
+        width: 80%;
+        margin: 0 10%;
+    }
+
+    .table-btns {
+        margin-left: 10%;
+    }
+
+    .table-btn {
+        width: 30%;
+        float: left;    
+    }
+
+    .error-message {
+        margin: 1em 10%;
     }
 
     #cost {
@@ -225,5 +330,23 @@ footer {
 
     #buttons-section {
         grid-area: box5;
+        height: 14vh;
+        margin: 0;
+        padding: 1em 0;
+        display: flex;
+        justify-content: center;     
+    }
+    
+    .form-btn {
+        width: 8em;
+        height: 3em;    
+        /* float: left; */
+        margin: 0.5em 0.2em;
+        padding: 0.3em;   
+    }
+
+    footer {
+        margin: 0;
+        padding: 0;
     }
 }
